@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      - DEBUG=true
+      - HOST_PORT=0.0.0.0:8080
+    # volumes:
+    #   - ./local/path:/var/run/container/path
+    # links:
+    #   - db
+    #   - redis
+
+  # db:
+  #   image: postgres:14.1-alpine
+  #   restart: unless-stopped
+  #   ports:
+  #     - 127.0.0.1:5432:5432
+  #   environment:
+  #     - POSTGRES_DB=db
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_PASSWORD=password
+  #     - PGDATA=/var/lib/postgresql/data
+  #   volumes:
+  #     - ./postgres-data:/var/lib/postgresql/data
+  #     - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # redis:
+  #   image: redis:6.2.6-alpine
+  #   restart: unless-stopped
+  #   ports:
+  #     - "127.0.0.1:6379:6379"
+  #   environment:
+  #     - REDIS_DB=1
+  #     - REDIS_PASSWORD=password
+  #   volumes:
+  #     - ./redis-data:/data
+  #   command: redis-server --save 60 1 --loglevel warning
