@@ -1,12 +1,20 @@
 # gonew
 
-This repository is a template for creating a new Go project with `gonew` command.
+This repository contains templates for creating new Go projects with [`gonew` command](https://go.dev/blog/gonew).
 
-Example:
+## Example
+
+Install `gonew`:
 
 ```bash
-$ cd ~/Projects
-$ gonew github.com/chuhlomin/gonew/server github.com/chuhlomin/new-service
+go install golang.org/x/tools/cmd/gonew@latest
+```
 
-gonew: initialized github.com/chuhlomin/new-service in ./new-service
+Create a new project: `gonew <template> <new-package>`
+
+```bash
+$ cd ~/Projects/username
+$ gonew github.com/chuhlomin/gonew/server github.com/username/new-service
+
+gonew: initialized github.com/username/new-service in ./new-service
 ```
