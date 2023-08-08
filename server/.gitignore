@@ -1,0 +1,6 @@
+/bin
+/ignore
+/output
+.env
+coverage.txt
+main

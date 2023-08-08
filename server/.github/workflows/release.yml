@@ -1,0 +1,51 @@
+name: release
+
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  DOCKER_IMAGE: chuhlomin/...
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+    #   - name: Run GoReleaser
+    #     uses: goreleaser/goreleaser-action@v2
+    #     with:
+    #       distribution: goreleaser
+    #       version: latest
+    #       args: release --rm-dist
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add tag to Docker image
+        uses: chuhlomin/actions/docker-retag@main
+        with:
+          username: chuhlomin
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          image_name: ${{ env.DOCKER_IMAGE }}
+          src-tag: ${{ github.sha }}
+          tags: ${{ github.ref_name }}
+
+      # - name: Add tag to Docker image
+      #   uses: chuhlomin/actions/docker-retag@main
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.PKG_TOKEN }}
+      #     image_name: ${{ env.DOCKER_IMAGE }}
+      #     src-tag: ${{ github.sha }}
+      #     tags: ${{ github.ref_name }}
