@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  DOCKER_IMAGE: chuhlomin/...
+  DOCKER_IMAGE: username/...
 
 jobs:
   main:
@@ -39,7 +39,7 @@ jobs:
         if: github.event_name == 'push'
         uses: chuhlomin/actions/docker-build-push@main
         with:
-          username: chuhlomin
+          username: username
           password: ${{ secrets.DOCKER_PASSWORD }}
           image_name: ${{ env.DOCKER_IMAGE }}
           tags: ${{ env.DOCKER_IMAGE }}:${{ github.sha }}

@@ -6,7 +6,7 @@ on:
       - v*
 
 env:
-  DOCKER_IMAGE: chuhlomin/...
+  DOCKER_IMAGE: username/...
 
 jobs:
   main:
@@ -34,7 +34,7 @@ jobs:
       - name: Add tag to Docker image
         uses: chuhlomin/actions/docker-retag@main
         with:
-          username: chuhlomin
+          username: username
           password: ${{ secrets.DOCKER_PASSWORD }}
           image_name: ${{ env.DOCKER_IMAGE }}
           src-tag: ${{ github.sha }}
