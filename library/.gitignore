@@ -1,0 +1,9 @@
+/bin
+/ignore
+/output
+/lint.txt
+/test.json
+/coverage.txt
+/.env
+/*.env
+/main
