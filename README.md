@@ -27,7 +27,11 @@ gonew: initialized github.com/username/new-server in ./new-server
 Or you may use [`new` script](https://github.com/chuhlomin/aliases/blob/main/new.sh):
 
 ```bash
-cd ~/Projects/username
-new server github.com/username/new-server
-new library github.com/username/new-library
+$ cd ~/Projects/username
+
+$ new server new-server
+gonew: initialized github.com/username/new-server in ./new-server
+
+$ new library new-library
+gonew: initialized github.com/username/new-library in ./new-library
 ```
