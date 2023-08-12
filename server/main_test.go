@@ -9,21 +9,14 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func TestHandler(t *testing.T) {
+func TestHandlerPing(t *testing.T) {
 	srv := server{
 		router: chi.NewRouter(),
 	}
 	srv.routes()
 	rec := httptest.NewRecorder()
 
-	srv.ServeHTTP(
-		rec,
-		httptest.NewRequest(
-			http.MethodGet,
-			"/route",
-			strings.NewReader(``),
-		),
-	)
+	srv.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, "/ping", strings.NewReader(``)))
 
 	if rec.Code != http.StatusOK {
 		t.Errorf("expected status code %d, got %d", http.StatusOK, rec.Code)
