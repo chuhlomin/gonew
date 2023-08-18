@@ -1,4 +1,4 @@
-package library
+package main // should be "package library", but gonew doesn't support it
 
 import (
 	"bytes"
