@@ -1,0 +1,10 @@
+/.idea
+/.vscode
+/bin
+/ignore
+/dive.log
+/test.json
+/lint.txt
+/coverage.txt
+/.env
+/*.env

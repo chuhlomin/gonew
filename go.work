@@ -1,4 +1,5 @@
 go 1.20
 
+use ./action
 use ./library
 use ./server

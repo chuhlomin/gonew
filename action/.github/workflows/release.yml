@@ -1,0 +1,22 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  DOCKER_IMAGE: username/repo
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add tag to Docker image
+        uses: chuhlomin/actions/docker-retag@main
+        with:
+          username: username
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          image_name: ${{ env.DOCKER_IMAGE }}
+          src-tag: ${{ github.sha }}
+          tags: ${{ github.ref_name }}

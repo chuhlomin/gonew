@@ -1,0 +1,21 @@
+name: ...
+description: ...
+
+author: First Last <email@domain.com>
+
+branding:
+  icon: file-text
+  color: purple
+
+inputs:
+  key:
+    description: descrition
+    required: true
+
+outputs:
+  result:
+    description: result
+
+runs:
+  using: docker
+  image: 'docker://username/repo:v1'
