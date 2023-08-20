@@ -58,3 +58,29 @@ jobs:
       #     password: ${{ secrets.PKG_TOKEN }}
       #     image_name: ${{ env.DOCKER_IMAGE }}
       #     tags: ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+
+      - name: Deploy to GKE
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip deploy]')
+        uses: chuhlomin/actions/deploy-gke@main
+        with:
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+          cluster_name: ...
+          location: ...
+          vars: |
+            replicas: 2
+            cpu_request: 10m
+            cpu_limit: 10m
+            mem_request: 20Mi
+            mem_limit: 20Mi
+            name: ...
+            app: ...
+            env: dev
+            image: ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            domain: ...
+            db_host: postgres
+            db_name: ...
+            db_username: ...
+            db_password_base64: ${{ secrets.DB_PASSWORD_DEV_BASE64 }}
+            redis_addr: redis:6379
+          rollout_status_wait: deployment/...
