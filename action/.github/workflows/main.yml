@@ -5,18 +5,16 @@ on:
   push:
     branches:
       - main
-env:
-  DOCKER_IMAGE: username/repo
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
           go-version: "1.20"
 
@@ -43,6 +41,8 @@ jobs:
       - name: Build and push to CR
         if: github.event_name == 'push'
         uses: chuhlomin/actions/docker-build-push@main
+        env:
+          DOCKER_IMAGE: username/repo
         with:
           username: username
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -51,6 +51,8 @@ jobs:
       
       # - name: Build and push to CR
       #   uses: chuhlomin/actions/docker-build-push@main
+      #   env:
+      #     DOCKER_IMAGE: ghcr.io/username/repo
       #   with:
       #     registry: ghcr.io
       #     username: ${{ github.actor }}
