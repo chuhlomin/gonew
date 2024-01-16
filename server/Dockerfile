@@ -4,7 +4,7 @@ WORKDIR /go/src/app
 ADD . /go/src/app
 
 RUN go test -mod=vendor -cover ./...
-RUN CGO_ENABLED=0 go build -mod=vendor -o /go/bin/app
+RUN CGO_ENABLED=0 go build -mod=vendor -ldflags="-s -w" -o /go/bin/app
 
 
 FROM gcr.io/distroless/static:966f4bd97f611354c4ad829f1ed298df9386c2ec
